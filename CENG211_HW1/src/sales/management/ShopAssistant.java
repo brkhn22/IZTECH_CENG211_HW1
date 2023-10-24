@@ -74,8 +74,4 @@ public class ShopAssistant {
 		return phoneNumber;
 	}
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
 }
