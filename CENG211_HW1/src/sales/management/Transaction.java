@@ -8,8 +8,7 @@ public class Transaction {
 	private int quantities[];
 	private float totalPrice;
 	private float transactionFee;
-	
-	int currentIndex;
+	private int currentIndex;
 	
 	public Transaction(long id) {
 		this.id = id;
@@ -17,6 +16,15 @@ public class Transaction {
 		this.quantities = new int[PRODUCT_NUMBER];
 		this.currentIndex = 0;
 		this.transactionFee = 0;
+	}
+	
+	public Transaction(Transaction transaction) {
+		this.id = transaction.getId();
+		this.products = transaction.getProducts();
+		this.quantities = transaction.getQuantities();
+		this.totalPrice = transaction.getTotalPrice();
+		this.transactionFee = transaction.getTransactionFee();
+		this.currentIndex = transaction.getCurrentIndex();
 	}
 	
 	public boolean addProduct(Product product, int quantity) {
@@ -87,7 +95,7 @@ public class Transaction {
 			}
 				
 		}
-		return mostExpensiveProduct;
+		return new Product(mostExpensiveProduct);
 	}
 	
 	public int getQuantityOfAnProduct(Product product) {
@@ -99,5 +107,14 @@ public class Transaction {
 			}
 		}
 		return quantity;
+	}
+	
+	public Product[] getProducts() {
+		return products;
+		
+	}
+	
+	public int getCurrentIndex() {
+		return currentIndex;
 	}
 }

@@ -63,11 +63,10 @@ public class TransactionManagement {
 				addProductsToTransaction(newTransaction);
 				transactions[i][j] = newTransaction;
 				// Calculate each shopAssistant's total revenue.
-				totalRevenue += newTransaction.getTotalPrice() + newTransaction.getTransactionFee();
+				totalRevenue += (newTransaction.getTotalPrice() + newTransaction.getTransactionFee());
 				transactionId++;
 			}
-			ShopAssistant currentAssistant = salaryManagement.getShopAssistantById(i);
-			currentAssistant.setComission(totalRevenue);
+			salaryManagement.setCommissionById(totalRevenue, i);
 		}
 	}
 	
@@ -83,7 +82,7 @@ public class TransactionManagement {
 				additionTry--;
 			
 		}
-		if(additionTry <= 0 && newTransaction.hasSlot()) 
+		if(newTransaction.hasSlot() && additionTry <= 0) 
 			System.err.println("Product Addition has been failed!");
 		
 	}
@@ -101,7 +100,7 @@ public class TransactionManagement {
 				}
 			}
 		}
-		return highestTransaction;
+		return new Transaction(highestTransaction);
 	}
 	public Transaction getTheLowestTransaction() {
 		// Start from the HIGHEST number of Float.
@@ -118,7 +117,7 @@ public class TransactionManagement {
 			}
 		}
 		
-		return lowestTransaction;
+		return new Transaction(lowestTransaction);
 	}
 	
 	public Transaction getTheLowestTransactionFee() {
@@ -132,7 +131,7 @@ public class TransactionManagement {
 				}
 			}
 		}
-		return lowestTransaction;
+		return new Transaction(lowestTransaction);
 	}
 	
 	public float getTotalRevenue() {
@@ -141,8 +140,6 @@ public class TransactionManagement {
 			for(int j = 0; j < TRANSACTIONS_PER_ASSISTANT; j++) {
 				totalRevenue += transactions[i][j].getTotalPrice() + transactions[i][j].getTransactionFee();
 			}
-			ShopAssistant currentAssistant = salaryManagement.getShopAssistantById(i);
-			currentAssistant.setComission(totalRevenue);
 		}
 		return totalRevenue;
 	}

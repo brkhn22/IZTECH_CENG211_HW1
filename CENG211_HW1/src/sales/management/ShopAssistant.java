@@ -22,6 +22,18 @@ public class ShopAssistant {
 		
 	}
 	
+	public ShopAssistant(ShopAssistant shopAssistant) {
+		if(shopAssistant == null)
+			throw new NullPointerException();
+		this.id = shopAssistant.getId();
+		this.name = shopAssistant.getName();
+		this.surname = shopAssistant.getSurname();
+		this.phoneNumber = shopAssistant.getPhoneNumber();
+		this.startDate = shopAssistant.getStartDate();
+		this.comission = shopAssistant.getComission();
+		this.weeklySalary = shopAssistant.getWeeklySalary();
+	}
+	
 	public int getSeniority() {
 		return LocalDate.now().getYear() - startDate.getYear();
 	}
@@ -73,5 +85,8 @@ public class ShopAssistant {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
+	
+	public LocalDate getStartDate() {
+		return LocalDate.of(startDate.getYear(), startDate.getMonth(), startDate.getDayOfMonth());
+	}
 }

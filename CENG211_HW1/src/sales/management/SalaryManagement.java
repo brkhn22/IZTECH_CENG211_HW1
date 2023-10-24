@@ -33,7 +33,7 @@ public class SalaryManagement {
 				
 				Random random = new Random();
 				// Generates integer between 0 - parsed value
-				int year = random.nextInt(LocalDate.now().getYear()-2017)+2018;
+				int year = random.nextInt(LocalDate.now().getYear()-2015)+2016;
 				int month = random.nextInt(12)+1;
 				// Every months have at least 28 days.
 				int day = random.nextInt(28)+1;
@@ -51,12 +51,11 @@ public class SalaryManagement {
 		}
 	}
 	
-	public ShopAssistant getShopAssistantById(int target) {
-		// Their id is equivalent to their index in the array.
-		if(target >= 0 && target < TransactionManagement.TOTAL_NUMBER_OF_ASSISTANTS)
-			return shopAssistants[target];
-		else
-			return null;
+	public void setCommissionById(float totalRevenue, int target) {
+		//Their id is their index of the array
+		if(target >= 0 && target < TransactionManagement.TOTAL_NUMBER_OF_ASSISTANTS) {
+			shopAssistants[target].setComission(totalRevenue);
+		}
 	}
 	
 	public ShopAssistant getHighestEarnedShopAssistant() {
@@ -71,12 +70,12 @@ public class SalaryManagement {
 				highestAssistant = shopAssistants[i];
 			}
 		}
-		return highestAssistant;
+		return new ShopAssistant(highestAssistant);
 	}
 	
 	public float getTotalMonthlySalaries() {
 		float totalSalaries = 0;
-		for(int i = 0; i < shopAssistants.length; i++) {
+		for(int i = 0; i < shopAssistants.length; i++) { 
 			totalSalaries += shopAssistants[i].getMonthlySalary();
 		}
 		return totalSalaries;

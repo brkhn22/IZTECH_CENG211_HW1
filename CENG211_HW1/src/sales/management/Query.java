@@ -30,7 +30,6 @@ public class Query {
 	
 	private void displayTheHighestTransaction() {
 		Transaction highestTransaction = transactionManagement.getTheHighestTransaction();
-		NumberFormat moneyFormater = NumberFormat.getCurrencyInstance();
 		if(highestTransaction != null) {
 			System.out.printf("1- The highest-total-price transaction id: %s has %s price\n",
 					highestTransaction.getId(),
@@ -39,7 +38,6 @@ public class Query {
 	}
 	private void displayTheMostExpensiveProductInTheLowestTransaction() {
 		Transaction lowestTransaction = transactionManagement.getTheLowestTransaction();
-		NumberFormat moneyFormater = NumberFormat.getCurrencyInstance();
 		if(lowestTransaction != null) {
 			Product mostExpensiveProduct = lowestTransaction.getTheMostExpensiveProduct();
 			System.out.printf("2- The most expensive product in the lowest-price transaction id: %s has %s price\n",
